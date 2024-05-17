@@ -4,7 +4,7 @@ const { MongoClient, ObjectId } = require("mongodb");
 
 // Preparamos as informações de acesso ao banco de dados
 const dbUrl = process.env.DATABASE_URL;
-const dbName = "mongodb-intro-e-implementacao";
+const dbName = "mongodb-arquitetura-mvc";
 
 // Declaramos a função main()
 async function main() {
