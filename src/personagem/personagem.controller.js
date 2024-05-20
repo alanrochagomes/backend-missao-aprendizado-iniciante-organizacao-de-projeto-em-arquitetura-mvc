@@ -39,8 +39,23 @@ async function readById(req, res) {
       res.status(201).send(newItem)
 }
 
-function updateById(req, res) {
-    res.send('Update By Id')
+ async function updateById(req, res) {
+    // Acessamos o ID dos prâmetros de rota
+    const id = req.params.id
+
+    // Acessamos o Body da requsição
+    const newItem = req.body;
+
+    // Checar se o `nome` está presente no body
+    if (!newItem || !newItem.nome) {
+      return res.status(400).send("Corpo da requisição deve conter a propriedade `nome`.");
+    }
+
+    // Atualizamos no DB o novoItem pelo ID, usando o Service
+    await service.updateById(id, newItem)
+
+      // Enviamos uma mensagem de sucesso
+      res.send(newItem);
 }
 
 function deleteById(req, res) {

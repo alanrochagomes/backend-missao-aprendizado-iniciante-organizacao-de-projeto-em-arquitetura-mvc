@@ -35,27 +35,13 @@ async function main() {
     // return res.status(404).send("Item não encontrado.");
     // }
 
-    // Acessamos o Body da requsição
-    const novoItem = req.body;
-
-    // Checar se o `nome` está presente no body
-    if (!novoItem || !novoItem.nome) {
-      return res.status(400).send("Corpo da requisição deve conter a propriedade `nome`.");
-    }
-
+    
     // Checa se o novoItem está na lista ou não
     // if (lista.includes(novoItem)) {
     // return res.status(409).send("Item já existe na lista.");
     // }
 
-    // Atualizamos na collection o novoItem pelo ID
-    await collection.updateOne(
-      { _id: new ObjectId(id) },
-      { $set: novoItem }
-    )
-
-    // Enviamos uma mensagem de sucesso
-    res.send(novoItem);
+    
   });
 
   // Endpoint Delete [DELETE] /personagem/:id
