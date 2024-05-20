@@ -1,31 +1,27 @@
 require('dotenv').config()
-const express = require("express");
-const { MongoClient, ObjectId } = require("mongodb");
-
-// Preparamos as informações de acesso ao banco de dados
-const dbUrl = process.env.DATABASE_URL;
-const dbName = "mongodb-arquitetura-mvc";
+const express = require('express');
+const { connectToDatabase } = require('./db/database-connection');
+// const { MongoClient, ObjectId } = require("mongodb");
 
 // Declaramos a função main()
 async function main() {
-  // Realizamos a conexão com o banco de dados
-  const client = new MongoClient(dbUrl);
-  console.log("Conectando ao banco de dados...");
-  await client.connect();
-  console.log("Banco de dados conectado com sucesso!");
+  // FIx: utilizar o connectToDataBase() e receber o DB
+  await connectToDatabase()
 
-  const db = client.db(dbName)
-  const collection = db.collection("personagem")
+  // const collection = db.collection("personagem")
 
   const app = express();
 
-  app.get("/", function (req, res) {
-    res.send("Hello World");
+  // Middlewares
+  // Sinalizo para o Express que estamos usando JSON no Body
+  app.use(express.json());
+
+  app.get('/', function (req, res) {
+    res.send('Hello World');
   });
 
-  const lista = ["Java", "Kotlin", "Android"];
-  //              0       1         2
-
+  // FIX: mover isso para a pasta `personagem`
+  /*
   // Endpoint Read All [GET] /personagem
   app.get("/personagem", async function (req, res) {
     // Acesssamos a lista de itens na collection do MongoDB
@@ -51,9 +47,6 @@ async function main() {
     // Enviamos o item como resposta
     res.send(item);
   });
-
-  // Sinalizo para o Express que estamos usando JSON no Body
-  app.use(express.json());
 
   // Endpoint Create [POST] /personagem
   app.post("/personagem", async function (req, res) {
@@ -128,8 +121,11 @@ async function main() {
     // Enviamos uma mensagem de sucesso
     res.send("Item removido com sucesso: " + id);
   });
+  */
 
-  app.listen(3000);
+  app.listen(3000, function () {
+    console.log('Servidor rodando em http://localhost:3000')
+  });
 }
 
 // Executamos a função main()
