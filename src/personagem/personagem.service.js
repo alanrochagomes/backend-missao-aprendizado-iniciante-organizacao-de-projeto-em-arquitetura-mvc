@@ -26,11 +26,6 @@ function create(newItem) {
   return getCollection().insertOne(newItem)
 }
 
-/**
- * 
- * @param {string} id 
- * @returns 
- */
 function updateById(id, newItem) {
   // Atualizamos na collection  o newItem pelo ID
   return getCollection().updateOne(
@@ -39,7 +34,15 @@ function updateById(id, newItem) {
   )
 }
 
-function deleteById() {
+/**
+ * 
+ * @param {string} id 
+ * @returns 
+ */
+function deleteById(id) {
+  // Remover o item da collection usando o ID
+  return getCollection().deleteOne({ _id: new ObjectId(id) })
+
 }
 
 module.exports = {
