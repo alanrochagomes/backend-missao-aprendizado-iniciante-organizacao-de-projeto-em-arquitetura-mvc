@@ -21,7 +21,9 @@ function readById(id) {
 
 }
 
-function create() {
+function create(newItem) {
+  // Adicionamos na collection
+  return getCollection().insertOne(newItem)
 }
 
 function updateById() {

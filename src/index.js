@@ -24,32 +24,6 @@ async function main() {
 
   // FIX: mover isso para a pasta `personagem`
   /*
-    // Enviamos o item como resposta
-    res.send(item);
-  });
-
-  // Endpoint Create [POST] /personagem
-  app.post("/personagem", async function (req, res) {
-    // Acessamos o Body da Requisição
-    const novoItem = req.body;
-
-    // Checar se o `nome` está presente no body
-    if (!novoItem || !novoItem.nome) {
-      return res.status(400).send("Corpo da requisição deve conter a propriedade `nome`.");
-    }
-
-    // Checar se o novoItem está na lista ou não
-    // if (lista.includes(novoItem)) {
-    // return res.status(409).send("Item já existe na lista.");
-    // }
-
-    // Adicionamos na collection
-    await collection.insertOne(novoItem)
-
-    // Exibimos uma mensagem de sucesso
-    res.status(201).send(novoItem)
-  });
-
   // Endpoint Update [PUT] /personagem/:id
   app.put("/personagem/:id", async function (req, res) {
     // Acessamos o ID dos parâmetros de rota
